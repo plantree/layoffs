@@ -1,6 +1,8 @@
 export type LayoffsItem = {
     date: Date;
     company: string;
-    employees: number;
+    department?: string[];
+    employees?: number;
+    ratio?: number;
     source: string;
 }
