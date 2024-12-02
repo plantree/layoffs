@@ -1,6 +1,7 @@
+import { promises as fs } from 'fs';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Send } from "lucide-react";
+import { List, Send } from "lucide-react";
 
 import Timeline from "@/components/Timeline";
 
@@ -37,7 +38,13 @@ function Footer() {
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const file = await fs.readFile(process.cwd() + "/src/data/json/2024-11.json", "utf-8");
+  const lists: LayoffsItem[] = JSON.parse(file);
+  for (const item of lists) {
+    item.date = new Date(item.date);
+  }
+  console.log(lists);
   return (
     <div className="flex flex-col min-h-screen">
       <main className="p-8 flex-1" role="main">
@@ -51,12 +58,12 @@ export default function Home() {
               href="https://github.com/plantree/layoffs-tracker/issues"
               target="_blank">
               <Send />
-              我要提交
+              我要提交 / 纠错
             </Link>
           </Button>
         </div>
         <h2 className="text font-semibold mb-8 text-gray-400">
-          专注中国就业市场
+          专注中国就业市场 (数据采集自互联网, 仅供参考)
         </h2>
         <Tabs defaultValue="list">
           <TabsList>
@@ -64,7 +71,7 @@ export default function Home() {
             <TabsTrigger value="trend">趋势</TabsTrigger>
           </TabsList>
           <TabsContent value="list">
-            <ListTab />
+            <ListTab lists={lists} />
           </TabsContent>
           <TabsContent value="trend">
             <TrendTab />
@@ -76,23 +83,7 @@ export default function Home() {
   );
 }
 
-function ListTab() {
-  // Mock 数据
-  const lists: LayoffsItem[] = [
-    {
-      company: "Meta",
-      employees: 11000,
-      date: new Date("2023-01-15"),
-      source: "https://example.com",
-    },
-    {
-      company: "Google",
-      employees: 12000,
-      date: new Date("2023-03-10"),
-      source: "https://example.com",
-    },
-  ];
-
+function ListTab({ lists }: { lists: LayoffsItem[] }) {
   return (
     <div className="mt-4">
       <Timeline layoffs={lists} />
