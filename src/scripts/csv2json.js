@@ -34,4 +34,16 @@ function csv2json() {
     });
 }
 
+// Generate list.json
+function generateList() {
+    const csvFiles = fs.readdirSync('src/data').filter((file) => file.endsWith('.csv'));
+    const metadata = [];
+    csvFiles.forEach((file) => {
+        const filename = file.split('/').reverse()[0].split('.')[0];
+        metadata.push(filename);
+    });
+    fs.writeFileSync('src/data/json/list.json', JSON.stringify(metadata, null, 2));
+}
+
 csv2json();
+generateList();

@@ -1,7 +1,7 @@
 import React from "react";
 import { SquareArrowOutUpRight } from "lucide-react";
 
-import type { LayoffsItem } from "@/lib/type";
+import type { LayoffsItem } from "@/app/lib/type";
 import Link from "next/link";
 
 const formatDate = (date: Date) => {
@@ -75,9 +75,6 @@ const Timeline = ({ layoffs }: { layoffs: LayoffsItem[] }) => {
             <Items items={layoffsByDate[date]} date={date} />
           </div>
         ))}
-        {/* {layoffs.map((item: LayoffsItem, index: number) => (
-          <div key={index}>{Item({ item })}</div>
-        ))} */}
       </div>
     </div>
   );

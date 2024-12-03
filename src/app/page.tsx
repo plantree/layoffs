@@ -1,12 +1,14 @@
-import { promises as fs } from 'fs';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
+'use client';
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/components/ui/tabs";
+import { Button } from "@/app/components/ui/button";
 import { List, Send } from "lucide-react";
 
-import Timeline from "@/components/Timeline";
+import Timeline from "@/app/components/Timeline";
 
-import type { LayoffsItem } from "@/lib/type";
+import type { LayoffsItem } from "@/app/lib/type";
 import Link from "next/link";
+import { useEffect, useState } from 'react';
 
 function Footer() {
   return (
@@ -39,12 +41,27 @@ function Footer() {
 }
 
 export default async function Home() {
-  const file = await fs.readFile(process.cwd() + "/src/data/json/2024-11.json", "utf-8");
-  const lists: LayoffsItem[] = JSON.parse(file);
-  for (const item of lists) {
-    item.date = new Date(item.date);
+  // const file = await fs.readFile(process.cwd() + "/src/data/json/2024-12.json", "utf-8");
+  // const lists: LayoffsItem[] = JSON.parse(file);
+  // for (const item of lists) {
+  //   item.date = new Date(item.date);
+  // }
+
+  useEffect(() => {
+    
+  })
+
+  const [loadIndex, setLoadIndex] = useState(0);
+  const canLoadMore = loadIndex < 2;
+  const loadMore = () => {
+    if (!canLoadMore) {
+      return;
+    }
+    setLoadIndex(loadIndex + 1);
   }
-  console.log(lists);
+
+
+
   return (
     <div className="flex flex-col min-h-screen">
       <main className="p-8 flex-1" role="main">
@@ -72,6 +89,9 @@ export default async function Home() {
           </TabsList>
           <TabsContent value="list">
             <ListTab lists={lists} />
+            <Button variant="outline" className='mt-4' onClick={loadMore}>
+              {canLoadMore ? '加载更多' : '到底啦~'}
+            </Button>
           </TabsContent>
           <TabsContent value="trend">
             <TrendTab />
