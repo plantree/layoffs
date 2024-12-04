@@ -16,11 +16,10 @@ function csv2json() {
                 if (header === 'date') {
                     obj[header] = new Date(values[i]).toISOString();
                 } else if (header === "department") {
-                    const departments = values[i].split(';');
-                    if (departments.length === 1) {
+                    if (values[i] === "") {
                         obj[header] = []
                     } else {
-                        obj[header] = departments;
+                        obj[header] = values[i].split(';');
                     }
                 }
                 else {

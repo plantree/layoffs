@@ -25,9 +25,11 @@ const Description = ({ item }: { item: LayoffsItem }) => {
         ) : (
           "裁员人数未知, "
         )}
-        {item.percentage ? `裁员比例约 ${item.percentage}%, ` : "裁员比例未知, "}
-        {item.department
-          ? `涉及部门：${item.department.join(", ")}`
+        {item.percentage
+          ? `裁员比例约 ${item.percentage}%, `
+          : "裁员比例未知, "}
+        {item.department.length > 0
+          ? `涉及部门: ${item.department.join(", ")}`
           : "裁员部门未知"}
       </span>
       <Link href={item.source}>
@@ -68,14 +70,12 @@ const Timeline = ({ layoffs }: { layoffs: LayoffsItem[] }) => {
   });
 
   return (
-    <div className="mt-8">
-      <div className="after:absolute after:inset-y-0 after:w-px after:bg-gray-500/20 relative pl-6 after:left-0 grid gap-10 dark:after:bg-gray-400/20">
-        {Object.keys(layoffsByDate).map((date, index) => (
-          <div key={index}>
-            <Items items={layoffsByDate[date]} date={date} />
-          </div>
-        ))}
-      </div>
+    <div className="after:absolute after:inset-y-0 after:w-px after:bg-gray-500/20 relative pl-6 after:left-0 grid gap-10 dark:after:bg-gray-400/20">
+      {Object.keys(layoffsByDate).map((date, index) => (
+        <div key={index}>
+          <Items items={layoffsByDate[date]} date={date} />
+        </div>
+      ))}
     </div>
   );
 };

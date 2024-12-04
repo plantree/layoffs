@@ -1,14 +1,16 @@
-'use client';
+"use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/components/ui/tabs";
-import { Button } from "@/app/components/ui/button";
-import { List, Send } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+
+import { Send } from "lucide-react";
 
 import Timeline from "@/app/components/Timeline";
 
 import type { LayoffsItem } from "@/app/lib/type";
 import Link from "next/link";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 function Footer() {
   return (
@@ -40,40 +42,68 @@ function Footer() {
   );
 }
 
-export default async function Home() {
-  // const file = await fs.readFile(process.cwd() + "/src/data/json/2024-12.json", "utf-8");
-  // const lists: LayoffsItem[] = JSON.parse(file);
-  // for (const item of lists) {
-  //   item.date = new Date(item.date);
-  // }
+function LoadingSkeleton() {
+  return (
+    <div className="flex items-center space-x-4 mt-8">
+      <Skeleton className="h-12 w-12 rounded-full" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-[250px]" />
+        <Skeleton className="h-4 w-[200px]" />
+      </div>
+    </div>
+  );
+}
+
+export default function Home() {
+  const [lists, setLists] = useState<string[]>();
+  const [loadIndex, setLoadIndex] = useState(-1);
+  const [layoffs, setLayoffs] = useState<LayoffsItem[]>();
 
   useEffect(() => {
-    
-  })
+    const fetchData = async () => {
+      // 1. fetch lists
+      const listsData = await fetch("/api/list").then((res) => res.json());
+      listsData.sort().reverse();
+      setLists(listsData);
+    };
+    fetchData();
+  }, []);
 
-  const [loadIndex, setLoadIndex] = useState(0);
-  const canLoadMore = loadIndex < 2;
-  const loadMore = () => {
-    if (!canLoadMore) {
-      return;
+  useEffect(() => {
+    if (lists) {
+      loadMore();
     }
-    setLoadIndex(loadIndex + 1);
+  }, [lists]);
+
+  function canLoad() {
+    return loadIndex < lists!.length - 1;
   }
 
-
+  async function loadMore() {
+    if (canLoad()) {
+      const layoffsData = await fetch(
+        `/api/layoffs?date=${lists![loadIndex + 1]}`
+      ).then((res) => res.json());
+      layoffsData.forEach((item: LayoffsItem) => {
+        item.date = new Date(item.date);
+      });
+      setLayoffs([...(layoffs || []), ...layoffsData]);
+      setLoadIndex(loadIndex + 1);
+    }
+  }
 
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="p-8 flex-1" role="main">
+      <main
+        className="flex-1  w-full mx-auto max-w-screen-xl p-4 justify-between"
+        role="main">
         <div className="flex flex-row gap-4 mb-4">
           {" "}
           <h1 className="text-2xl font-bold my-auto inline-block">
             Layoffs Tracker
           </h1>
           <Button variant="outline" asChild>
-            <Link
-              href="https://github.com/plantree/layoffs-tracker/issues"
-              target="_blank">
+            <Link href="https://github.com/plantree/layoffs-tracker/issues">
               <Send />
               我要提交 / 纠错
             </Link>
@@ -88,10 +118,16 @@ export default async function Home() {
             <TabsTrigger value="trend">趋势</TabsTrigger>
           </TabsList>
           <TabsContent value="list">
-            <ListTab lists={lists} />
-            <Button variant="outline" className='mt-4' onClick={loadMore}>
-              {canLoadMore ? '加载更多' : '到底啦~'}
-            </Button>
+            {loadIndex === -1 ? (
+              <LoadingSkeleton />
+            ) : (
+              <>
+                <ListTab lists={layoffs!} />{" "}
+                <Button variant="outline" className="mt-4" onClick={loadMore}>
+                  {canLoad() ? "加载更多" : "到底啦~"}
+                </Button>
+              </>
+            )}
           </TabsContent>
           <TabsContent value="trend">
             <TrendTab />

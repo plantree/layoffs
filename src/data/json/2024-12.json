@@ -1,10 +1,13 @@
 [
   {
-    "date": "2024-12-02T00:00:00.000Z",
-    "company": "极度汽车",
-    "department": [],
+    "date": "2024-12-03T00:00:00.000Z",
+    "company": "欧莱雅",
+    "department": [
+      "大众化妆品"
+    ],
     "headcount": "",
-    "percentage": "50",
-    "source": "https://www.donews.com/news/detail/1/4627898.html"
+    "percentage": "",
+    "source": "https://www.36kr.com/p/3063320539653511",
+    "refute": ""
   }
 ]
