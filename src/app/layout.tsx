@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Layoffs Tracker",
+  title: "裁员追踪器 | Layoffs Tracker",
   description: "专注中国就业市场",
   authors: [{ name: "plantree", url: "https://plantree.me/" }],
   keywords: ["裁员", "中国", "就业"],
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "https://layoffs-tracker.plantree.me/favicon.jpg",
   ],
   openGraph: {
-    title: "Layoffs Tracker",
+    title: "裁员追踪器 | Layoffs Tracker",
     description: "专注中国就业市场",
     type: "website",
     url: "https://layoffs-tracker.plantree.me/",
