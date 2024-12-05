@@ -22,6 +22,11 @@ function Footer() {
               关于
             </Link>
           </li>
+            <li>
+            <Link href="/changelog" className="hover:underline me-4 md:me-6">
+              变更日志
+            </Link>
+          </li>
           <li>
             <Link
               href="https://github.com/plantree/layoffs-tracker"
@@ -58,6 +63,7 @@ export default function Home() {
   const [lists, setLists] = useState<string[]>();
   const [loadIndex, setLoadIndex] = useState(-1);
   const [layoffs, setLayoffs] = useState<LayoffsItem[]>();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,8 +85,10 @@ export default function Home() {
     return loadIndex < lists!.length - 1;
   }
 
+  // 2. fetch layoffs
   async function loadMore() {
     if (canLoad()) {
+      setLoading(true);
       const layoffsData = await fetch(
         `/api/layoffs?date=${lists![loadIndex + 1]}`
       ).then((res) => res.json());
@@ -89,6 +97,7 @@ export default function Home() {
       });
       setLayoffs([...(layoffs || []), ...layoffsData]);
       setLoadIndex(loadIndex + 1);
+      setLoading(false);
     }
   }
 
@@ -123,9 +132,17 @@ export default function Home() {
             ) : (
               <>
                 <ListTab lists={layoffs!} />{" "}
-                <Button variant="outline" className="mt-4" onClick={loadMore}>
-                  {canLoad() ? "加载更多" : "到底啦~"}
-                </Button>
+                {loading ? (
+                  <LoadingSkeleton />
+                ) : (
+                  <Button
+                    variant="outline"
+                    className="mt-4"
+                    onClick={loadMore}
+                    disabled={!canLoad()}>
+                    {canLoad() ? "加载更多" : "到底啦~"}
+                  </Button>
+                )}
               </>
             )}
           </TabsContent>
