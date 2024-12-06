@@ -5,4 +5,5 @@ export type LayoffsItem = {
     headcount?: number;
     percentage?: number;
     source: string;
+    refute?: string;
 }

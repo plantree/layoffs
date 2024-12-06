@@ -24,7 +24,6 @@ function csv2json() {
                 }
                 else {
                     obj[header] = values[i];
-
                 }
                 return obj;
             }, {});

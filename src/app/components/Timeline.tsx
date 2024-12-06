@@ -3,6 +3,7 @@ import { SquareArrowOutUpRight } from "lucide-react";
 
 import type { LayoffsItem } from "@/app/lib/type";
 import Link from "next/link";
+import { badgeVariants } from "@/components/ui/badge"
 
 const formatDate = (date: Date) => {
   const year = date.getFullYear();
@@ -16,7 +17,7 @@ const formatDate = (date: Date) => {
 const Description = ({ item }: { item: LayoffsItem }) => {
   return (
     <>
-      <span>
+      <span className={item.refute && "line-through"}>
         {item.company},{" "}
         {item.headcount ? (
           <span>
@@ -33,8 +34,11 @@ const Description = ({ item }: { item: LayoffsItem }) => {
           : "裁员部门未知"}
       </span>
       <Link href={item.source}>
-        <SquareArrowOutUpRight className="ml-1 h-4 w-4" />
+        <SquareArrowOutUpRight className="mx-2 h-4 w-4" />
       </Link>
+      {item.refute && (
+      <Link href={item.refute} className={badgeVariants({ variant: "outline" } )}>辟谣</Link>
+      )}
     </>
   );
 };

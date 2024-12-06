@@ -10,20 +10,21 @@ import Timeline from "@/app/components/Timeline";
 
 import type { LayoffsItem } from "@/app/lib/type";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 function Footer() {
   return (
     <footer className="bg-white m-4 dark:bg-gray-800">
       <div className="flex flex-col gap-2 md:flex-row-reverse w-full mx-auto max-w-screen-xl p-4 justify-between">
-        <ul className="flex items-center justify-center text-sm font-medium text-gray-500 dark:text-gray-400">
+        <ul className="flex flex-row gap-4 items-center justify-center text-sm font-medium text-gray-500 dark:text-gray-400">
           <li>
-            <Link href="/about" className="hover:underline me-4 md:me-6">
+            <Link href="/about" className="hover:underline">
               关于
             </Link>
           </li>
             <li>
-            <Link href="/changelog" className="hover:underline me-4 md:me-6">
+            <Link href="/changelog" className="hover:underline">
               变更日志
             </Link>
           </li>

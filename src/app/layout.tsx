@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from '@next/third-parties/google';
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://layoffs-tracker.plantree.me/",
     locale: "zh_CN",
-    siteName: "Layoffs Tracker",
+    siteName: "裁员追踪器 | Layoffs Tracker",
     images: [
       "https://layoffs-tracker.plantree.me/favicon.jpg",
     ]
@@ -31,6 +32,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
+      <head>
+        <GoogleAnalytics gaId="G-K1JTYXHCKY" />
+      </head>
       <body>
         {children}
       </body>
