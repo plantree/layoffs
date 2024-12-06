@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://layoffs-tracker.plantree.me/" },
   icons: [
     "https://layoffs-tracker.plantree.me/favicon.jpg",
+    {
+      url: "https://layoffs-tracker.plantree.me/assets/ios/180.png",
+      rel: "apple-touch-icon",
+      sizes: "180x180",
+    },
   ],
   openGraph: {
     title: "裁员追踪器 | Layoffs Tracker",
