@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <head>
-        <GoogleAnalytics gaId="G-K1JTYXHCKY" />
+        <GoogleAnalytics gaId="G-P0T9DWLRD0" />
       </head>
       <body>
         {children}
