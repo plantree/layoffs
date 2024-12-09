@@ -10,7 +10,6 @@ import Timeline from "@/app/components/Timeline";
 
 import type { LayoffsItem } from "@/app/lib/type";
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 function Footer() {
@@ -19,12 +18,12 @@ function Footer() {
       <div className="flex flex-col gap-2 md:flex-row-reverse w-full mx-auto max-w-screen-xl p-4 justify-between">
         <ul className="flex flex-row gap-4 items-center justify-center text-sm font-medium text-gray-500 dark:text-gray-400">
           <li>
-            <Link href="/about" className="hover:underline">
+            <Link href="https://github.com/plantree/layoffs-tracker/blob/main/README.md" className="hover:underline">
               关于
             </Link>
           </li>
             <li>
-            <Link href="/changelog" className="hover:underline">
+            <Link href="https://github.com/plantree/layoffs-tracker/blob/main/CHANGELOG.md" className="hover:underline">
               变更日志
             </Link>
           </li>

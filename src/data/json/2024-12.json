@@ -11,12 +11,37 @@
     "refute": ""
   },
   {
-    "date": "2024-12-06T00:00:00.000Z",
-    "company": "福特",
+    "date": "2024-12-09T00:00:00.000Z",
+    "company": "海信",
     "department": [],
     "headcount": "",
+    "percentage": "20",
+    "source": "https://www.huxiu.com/moment/1076117.html",
+    "refute": ""
+  },
+  {
+    "date": "2024-12-09T00:00:00.000Z",
+    "company": "云鲸",
+    "department": [
+      "开发",
+      "测试"
+    ],
+    "headcount": "",
     "percentage": "",
-    "source": "https://www.sohu.com/a/833740754_100202083?spm=sawp.home.topheadline3.2.1733453171530RIUon2dw",
+    "source": "http://news.cnfol.com/chanyejingji/20241209/31054351.shtml",
+    "refute": ""
+  },
+  {
+    "date": "2024-12-09T00:00:00.000Z",
+    "company": "通用",
+    "department": [
+      "财务",
+      "智驾研发",
+      "产品规划"
+    ],
+    "headcount": "",
+    "percentage": "33",
+    "source": "https://www.eet-china.com/mp/a367833.html",
     "refute": ""
   }
 ]
