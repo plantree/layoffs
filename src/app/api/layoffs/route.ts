@@ -2,24 +2,23 @@ import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import type { LayoffsItem } from "@/app/lib/type";
 
-const cache = new Map<string, LayoffsItem[]>();
-const files = await fs.readdir(process.cwd() + "/src/data/json");
-for (const file of files) {
-  const data = await fs.readFile(process.cwd() + "/src/data/json/" + file, "utf-8");
-  cache.set(file.replace(".json", ""), JSON.parse(data));
-}
-
-export function GET(request: Request) {
+export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const date = searchParams.get("date");
-  if (date && cache.has(date)) {
-    return NextResponse.json(cache.get(date), {
+  const data = searchParams.get("date");
+  if (data) {
+    const file = process.cwd() + "/src/data/json/" + data + ".json";
+    try {
+      await fs.access(file);
+      const lists: LayoffsItem[] = JSON.parse(await fs.readFile(file, "utf-8"));
+      return NextResponse.json(lists, {
         status: 200,
         headers: {
           "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
         },
       });
-  } else {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+    } catch (error) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
   }
+  return NextResponse.json({ error: "Not found" }, { status: 404 });
 }

@@ -2,18 +2,16 @@ import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import type { LayoffsItem } from "@/app/lib/type";
 
-const file = await fs.readFile(
-  process.cwd() + "/src/data/json/list.json",
-  "utf-8"
-);
-
-const lists: LayoffsItem[] = JSON.parse(file);
-
-export function GET() {
+export async function GET() {
+  const file = await fs.readFile(
+    process.cwd() + "/src/data/json/list.json",
+    "utf-8"
+  );
+  const lists: LayoffsItem[] = JSON.parse(file);
   return NextResponse.json(lists, {
-      status: 200,
-      headers: {
-        "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
-      },
+    status: 200,
+    headers: {
+      "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
+    },
   });
 }
