@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import type { LayoffsItem } from "@/app/lib/type";
 
 const file = await fs.readFile(
-  process.cwd() + "/src/data/json/list.json",
+  process.cwd() + "/public/data/json/list.json",
   "utf-8"
 );
 

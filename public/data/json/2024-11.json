@@ -1,0 +1,78 @@
+[
+  {
+    "date": "2024-11-25T00:00:00.000Z",
+    "company": "Keep",
+    "department": [
+      "线上",
+      "国际化",
+      "市场"
+    ],
+    "headcount": "100",
+    "percentage": "10",
+    "source": "https://finance.sina.cn/2024-11-25/detail-incxhqmn4939148.d.html?vt=4",
+    "refute": ""
+  },
+  {
+    "date": "2024-11-25T00:00:00.000Z",
+    "company": "慧智微电子",
+    "department": [
+      "研发"
+    ],
+    "headcount": "86",
+    "percentage": "40",
+    "source": "https://www.eet-china.com/news/202411262191.html",
+    "refute": ""
+  },
+  {
+    "date": "2024-11-25T00:00:00.000Z",
+    "company": "长城汽车",
+    "department": [],
+    "headcount": "100",
+    "percentage": "",
+    "source": "https://finance.sina.cn/2024-11-25/detail-incxhuth8069593.d.html?vt=4",
+    "refute": ""
+  },
+  {
+    "date": "2024-11-27T00:00:00.000Z",
+    "company": "毫末智行",
+    "department": [
+      "职能"
+    ],
+    "headcount": "",
+    "percentage": "30",
+    "source": "https://www.esmchina.com/news/12535.html",
+    "refute": ""
+  },
+  {
+    "date": "2024-11-29T00:00:00.000Z",
+    "company": "富途集团",
+    "department": [
+      "资讯互联网",
+      "产品研发"
+    ],
+    "headcount": "",
+    "percentage": "5",
+    "source": "https://www.zaobao.com.sg/realtime/china/story20241129-5419578",
+    "refute": ""
+  },
+  {
+    "date": "2024-11-29T00:00:00.000Z",
+    "company": "可优比",
+    "department": [],
+    "headcount": "",
+    "percentage": "70",
+    "source": "https://www.stcn.com/article/detail/1432465.html",
+    "refute": ""
+  },
+  {
+    "date": "2024-11-29T00:00:00.000Z",
+    "company": "网易深圳",
+    "department": [
+      "游戏业务"
+    ],
+    "headcount": "",
+    "percentage": "",
+    "source": "https://www.thepaper.cn/newsDetail_forward_29494601",
+    "refute": "https://m.thepaper.cn/newsDetail_forward_29494601"
+  }
+]

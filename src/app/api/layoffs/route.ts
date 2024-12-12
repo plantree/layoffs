@@ -3,9 +3,9 @@ import fs from "fs/promises";
 import type { LayoffsItem } from "@/app/lib/type";
 
 const cache = new Map<string, LayoffsItem[]>();
-const files = await fs.readdir(process.cwd() + "/src/data/json");
+const files = await fs.readdir(process.cwd() + "/public/data/json");
 for (const file of files) {
-  const data = await fs.readFile(process.cwd() + "/src/data/json/" + file, "utf-8");
+  const data = await fs.readFile(process.cwd() + "/public/data/json/" + file, "utf-8");
   cache.set(file.replace(".json", ""), JSON.parse(data));
 }
 

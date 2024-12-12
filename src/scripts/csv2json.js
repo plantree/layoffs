@@ -28,7 +28,7 @@ function csv2json() {
                 return obj;
             }, {});
         });
-        fs.writeFileSync(`src/data/json/${file.replace('.csv', '.json')}`, JSON.stringify(data, null, 2));
+        fs.writeFileSync(`public/data/json/${file.replace('.csv', '.json')}`, JSON.stringify(data, null, 2));
     });
 }
 
@@ -40,7 +40,7 @@ function generateList() {
         const filename = file.split('/').reverse()[0].split('.')[0];
         metadata.push(filename);
     });
-    fs.writeFileSync('src/data/json/list.json', JSON.stringify(metadata, null, 2));
+    fs.writeFileSync('public/data/json/list.json', JSON.stringify(metadata, null, 2));
 }
 
 csv2json();
