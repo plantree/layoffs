@@ -95,6 +95,9 @@ export default function Home() {
       layoffsData.forEach((item: LayoffsItem) => {
         item.date = new Date(item.date);
       });
+      layoffsData.sort((a: LayoffsItem, b: LayoffsItem) =>
+        a.company.localeCompare(b.company)
+      );
       setLayoffs([...(layoffs || []), ...layoffsData]);
       setLoadIndex(loadIndex + 1);
       setLoading(false);

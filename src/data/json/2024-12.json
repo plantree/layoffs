@@ -66,6 +66,15 @@
     "headcount": "",
     "percentage": "30",
     "source": "https://yicai.com/news/102405394.html",
+    "refute": "http://www.news.cn/auto/20241218/5c44c5f5e7d841428539c4ea0b39c659/c.html"
+  },
+  {
+    "date": "2024-12-18T00:00:00.000Z",
+    "company": "蒙牛",
+    "department": [],
+    "headcount": "6000",
+    "percentage": "",
+    "source": "https://www.163.com/dy/article/JJMDVL200556AM2F.html",
     "refute": ""
   }
 ]
