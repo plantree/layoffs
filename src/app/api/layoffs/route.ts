@@ -14,6 +14,7 @@ export async function GET(request: Request) {
         status: 200,
         headers: {
           "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
+          "Vary": ":path",
         },
       });
     } catch (error) {
