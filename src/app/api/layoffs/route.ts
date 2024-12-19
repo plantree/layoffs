@@ -11,11 +11,7 @@ export async function GET(request: Request) {
       await fs.access(file);
       const lists: LayoffsItem[] = JSON.parse(await fs.readFile(file, "utf-8"));
       return NextResponse.json(lists, {
-        status: 200,
-        headers: {
-          "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
-          "Vary": ":path",
-        },
+        status: 200
       });
     } catch (error) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
