@@ -90,7 +90,7 @@ export default function Home() {
     if (canLoad()) {
       setLoading(true);
       const layoffsData = await fetch(
-        `/api/layoffs?date=${lists![loadIndex + 1]}`
+        `/api/layoffs/${lists![loadIndex + 1]}`
       ).then((res) => res.json());
       layoffsData.forEach((item: LayoffsItem) => {
         item.date = new Date(item.date);
