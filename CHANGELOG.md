@@ -1,3 +1,9 @@
+## 2024-12-25
+
+### Features
+
+- 增加 http cache
+
 ## 2024-12-06
 
 ### Features
